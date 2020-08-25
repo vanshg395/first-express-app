@@ -1,3 +1,5 @@
+const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -12,7 +14,7 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use((req, res, next) => {
-  res.status(404).send("Oops! dont try for anything fishy");
+  res.status(404).sendfile(path.join(__dirname, "views", "error.html"));
 });
 
 app.listen(3000, () => {
